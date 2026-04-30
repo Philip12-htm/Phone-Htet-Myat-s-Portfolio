@@ -676,6 +676,55 @@
         }
 
         .tooltip.show { opacity: 1; }
+        /* --- High-End Button Fix --- */
+.cta-group {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.magnetic-btn {
+    position: relative;
+    padding: 1rem 2.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+    display: inline-block;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+/* Primary Button (LinkedIn) */
+.btn-primary {
+    background: #2E5BFF; /* Your Electric Cobalt */
+    color: white;
+    border: 1px solid transparent;
+}
+
+/* Ghost Button (GitHub) */
+.btn-ghost {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+/* The Cool "Fluid Shift" Hover Effect */
+.magnetic-btn:hover {
+    transform: translateY(-8px) scale(1.02); /* Smooth lift up */
+}
+
+.btn-primary:hover {
+    box-shadow: 0 15px 30px rgba(46, 91, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-ghost:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    border-color: #00FF94; /* Neon Emerald glow on hover */
+    background: rgba(255, 255, 255, 0.08);
+}
 
         /* --- Footer --- */
         footer {
@@ -1159,21 +1208,26 @@
             });
         });
 
-        // --- Magnetic Buttons ---
-        const magneticBtns = document.querySelectorAll('.magnetic-btn');
-        magneticBtns.forEach(btn => {
-            btn.addEventListener('mousemove', (e) => {
-                const position = btn.getBoundingClientRect();
-                const x = e.pageX - position.left - position.width / 2;
-                const y = e.pageY - position.top - position.height / 2;
-                
-                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px)`;
-            });
-            
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translate(0px, 0px)';
-            });
-        });
+        // --- New Smoother Fluid Buttons ---
+const magneticBtns = document.querySelectorAll('.magnetic-btn');
+
+magneticBtns.forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+        const position = btn.getBoundingClientRect();
+        // Calculate center of button
+        const x = e.clientX - position.left - position.width / 2;
+        const y = e.clientY - position.top - position.height / 2;
+        
+        // Use a very small multiplier for a "fluid" feel, not a "jumpy" one
+        // We use translate3d for better GPU performance
+        btn.style.transform = `translate3d(${x * 0.15}px, ${y * 0.15}px, 0) translateY(-8px)`;
+    });
+    
+    btn.addEventListener('mouseleave', () => {
+        // Return to the default hovered state (just the lift)
+        btn.style.transform = 'translate3d(0, 0, 0) translateY(0)';
+    });
+});
 
         // --- Scroll Reveal ---
         const sr = ScrollReveal({
