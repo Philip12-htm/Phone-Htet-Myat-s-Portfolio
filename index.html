@@ -689,6 +689,72 @@
             margin: 4rem auto 0;
             color: var(--text-secondary);
         }
+        /* --- Updated Education Bridge --- */
+.edu-bridge {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr; /* Support for 3 panels */
+    align-items: stretch;
+    gap: 0;
+    margin: 4rem 0;
+    overflow: hidden;
+}
+
+.edu-panel { padding: 2.5rem; display: flex; flex-direction: column; }
+.edu-date { font-size: 0.85rem; color: var(--cobalt); font-weight: 700; margin-bottom: 1rem; display: block; }
+.edu-desc { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; }
+
+.edu-actions { margin-top: auto; padding-top: 2rem; }
+.edu-download-btn {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.edu-download-btn:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+/* Color Panels */
+.gold-panel .edu-icon { color: #FFD700; }
+.gold-badge { border: 1px solid #FFD700; color: #FFD700; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; }
+
+/* --- Certifications Grid --- */
+.certifications-container { margin-top: 6rem; }
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.cert-card {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.cert-card:hover { transform: translateY(-5px); border-color: var(--cobalt); }
+.cert-info h4 { font-size: 1rem; margin-bottom: 0.2rem; color: var(--text-primary); }
+.cert-info p { font-size: 0.85rem; color: var(--text-secondary); }
+
+.cert-download {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--emerald);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+.cert-download:hover { border-bottom: 1px solid var(--emerald); }
+.coming-soon { opacity: 0.6; cursor: not-allowed; border-style: dashed; }
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+    .edu-bridge { grid-template-columns: 1fr; }
+    .edu-divider { height: 1px; width: 100%; }
+}
 
         /* --- Insights Blog --- */
         .blog-grid {
@@ -1083,53 +1149,125 @@
         </div>
     </div>
 </div>
-    <!-- Education Section -->
-    <section id="education">
-        <div class="container" style="text-align: center; margin-bottom: 3rem;">
-            <span class="section-tag">Dual Expertise</span>
-            <h2 class="section-title">The convergence of engineering rigor and business acumen.</h2>
-        </div>
+   <!-- Education Section -->
+<section id="education">
+    <div class="container" style="text-align: center; margin-bottom: 3rem;">
+        <span class="section-tag">Academic Foundation</span>
+        <h2 class="section-title">The convergence of engineering rigor and business acumen.</h2>
+    </div>
 
-        <div class="container edu-bridge glass-card">
-            <div class="edu-panel cobalt-panel">
-                <div class="edu-icon text-cobalt">
-                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2l-10 5 10 5 10-5-10-5zm0 13l-9-4.5v3.5l9 4.5 9-4.5v-3.5l-9 4.5z"/></svg>
-                </div>
-                <h3 class="edu-degree">BSc in Computer System Engineering</h3>
-                <span class="edu-school">Westminster University (TBC)</span>
-                <ul class="edu-modules mb-4">
-                    <li>Machine Learning</li>
-                    <li>Data Structures</li>
-                    <li>Database Systems</li>
-                    <li>Neural Networks</li>
-                    <li>Software Engineering</li>
-                </ul>
-                <span class="edu-badge cobalt-badge">Engineering Foundation</span>
+    <!-- Triple Panel Education Bridge -->
+    <div class="container edu-bridge glass-card">
+        <!-- University of Sunderland -->
+        <div class="edu-panel cobalt-panel">
+            <div class="edu-icon text-cobalt">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2l-10 5 10 5 10-5-10-5zm0 13l-9-4.5v3.5l9 4.5 9-4.5v-3.5l-9 4.5z"/></svg>
             </div>
-
-            <div class="edu-divider"></div>
-
-            <div class="edu-panel emerald-panel">
-                <div class="edu-icon text-emerald">
-                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
-                </div>
-                <h3 class="edu-degree">Associate in Business Administration</h3>
-                <span class="edu-school">Strategy Business School (TBC)</span>
-                <ul class="edu-modules mb-4">
-                    <li>Market Strategy</li>
-                    <li>Financial Analysis</li>
-                    <li>Product Management</li>
-                    <li>Business Intelligence</li>
-                    <li>Operations</li>
-                </ul>
-                <span class="edu-badge emerald-badge">Business Foundation</span>
+            <h3 class="edu-degree">BSc (Hons) Computer System Engineering</h3>
+            <span class="edu-school">University of Sunderland (GUSTO College)</span>
+            <span class="edu-date">2022 — Present (Final Semester)</span>
+            <ul class="edu-modules">
+                <li>Data Engineering Concentration</li>
+                <li>Advanced Machine Learning</li>
+                <li>Predictive Analytics</li>
+                <li>Statistical Modeling</li>
+            </ul>
+            <div class="edu-actions">
+                <a href="src/assets/transcript_bsc.pdf" download class="edu-download-btn cobalt-badge">Transcript <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4M7 10l5 5 5-5M12 15V3"/></svg></a>
             </div>
         </div>
 
-        <div class="container">
-            <p class="edu-quote">"The rarest engineer is one who can speak to both the data scientist and the CEO."</p>
+        <div class="edu-divider"></div>
+
+        <!-- University of the People -->
+        <div class="edu-panel emerald-panel">
+            <div class="edu-icon text-emerald">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+            </div>
+            <h3 class="edu-degree">AS in Business Administration</h3>
+            <span class="edu-school">University of the People (WSCUC Accredited)</span>
+            <span class="edu-date">2026 — Present</span>
+            <p class="edu-desc">Bridging the gap between technical data and corporate decision-making through business strategy and operations.</p>
+            <div class="edu-actions">
+                <a href="#" class="edu-download-btn emerald-badge">Coming Soon...</a>
+            </div>
         </div>
-    </section>
+
+        <div class="edu-divider"></div>
+
+        <!-- HND GUSTO -->
+        <div class="edu-panel gold-panel">
+            <div class="edu-icon text-gold">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
+            </div>
+            <h3 class="edu-degree">HND Diploma in Computing</h3>
+            <span class="edu-school">GUSTO COLLEGE</span>
+            <span class="edu-date">2022 — 2025</span>
+            <p class="edu-desc">Technical foundation in software development, networking, and core systems architecture.</p>
+            <div class="edu-actions">
+                <a href="src/assets/hnd_diploma.pdf" download class="edu-download-btn gold-badge">Official Diploma <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4M7 10l5 5 5-5M12 15V3"/></svg></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certifications Section -->
+    <div class="container certifications-container">
+        <div style="margin-bottom: 2rem;">
+            <span class="section-tag">Validated Skills</span>
+            <h2 class="section-title" style="font-size: 1.8rem;">Professional Certifications</h2>
+        </div>
+        
+        <div class="cert-grid">
+            <!-- Cert 1 -->
+            <div class="cert-card glass-card">
+                <div class="cert-info">
+                    <h4>Applied Data Science Specialization</h4>
+                    <p>Dataversity</p>
+                </div>
+                <a href="#" class="cert-download">Download</a>
+            </div>
+            <!-- Cert 2 -->
+            <div class="cert-card glass-card">
+                <div class="cert-info">
+                    <h4>Data Science Lab Program</h4>
+                    <p>School of Matrix</p>
+                </div>
+                <a href="#" class="cert-download">Download</a>
+            </div>
+            <!-- Cert 3 -->
+            <div class="cert-card glass-card">
+                <div class="cert-info">
+                    <h4>Math Fundamentals for AI</h4>
+                    <p>Simbolo</p>
+                </div>
+                <a href="#" class="cert-download">Download</a>
+            </div>
+            <!-- Cert 4 -->
+            <div class="cert-card glass-card">
+                <div class="cert-info">
+                    <h4>Data Science Program</h4>
+                    <p>Simbolo</p>
+                </div>
+                <a href="#" class="cert-download">Download</a>
+            </div>
+            <!-- Cert 5 -->
+            <div class="cert-card glass-card">
+                <div class="cert-info">
+                    <h4>Fundamental Python Programming</h4>
+                    <p>Dataversity</p>
+                </div>
+                <a href="#" class="cert-download">Download</a>
+            </div>
+            <!-- Coming Soon -->
+            <div class="cert-card glass-card coming-soon">
+                <div class="cert-info">
+                    <h4>MLOps & Cloud Architecture</h4>
+                    <p>Coming Soon</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Blog Section -->
     <section id="insights">
@@ -1188,8 +1326,8 @@
             <p class="text-secondary" style="max-width: 600px; margin: 0 auto 3rem;">Open to freelance projects, full-time roles, and data consulting.</p>
             
             <div class="cta-group">
-                <a href="#" class="btn btn-primary magnetic-btn">Connect on LinkedIn</a>
-                <a href="#" class="btn btn-ghost magnetic-btn">View GitHub</a>
+                <a href="www.linkedin.com/in/phone-htet-myat" class="btn btn-primary magnetic-btn">Connect on LinkedIn</a>
+                <a href="https://github.com/Philip12-htm" class="btn btn-ghost magnetic-btn">View GitHub</a>
             </div>
 
             <div class="contact-email-box">
@@ -1382,7 +1520,11 @@ magneticBtns.forEach(btn => {
         sr.reveal(`.hero-content, .section-tag, .section-title`, { delay: 500, origin: 'bottom' });
         sr.reveal(`.about-left, .edu-panel.cobalt-panel`, { delay: 600, origin: 'left' });
         sr.reveal(`.about-right, .edu-panel.emerald-panel`, { delay: 600, origin: 'right' });
-        sr.reveal(`.project-card, .blog-card, .hero-stats`, { delay: 700, origin: 'bottom', interval: 200 });
+        sr.reveal(`.project-card, .blog-card, .hero-stats, .cert-card`, { 
+    delay: 700, 
+    origin: 'bottom', 
+    interval: 150 
+});
 
         // --- Copy to Clipboard ---
         const copyBtn = document.getElementById('copy-email-btn');
