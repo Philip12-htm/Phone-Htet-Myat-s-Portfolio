@@ -356,73 +356,126 @@
             font-weight: 600;
         }
 
-        /* --- About Section --- */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 6rem;
-            align-items: start;
-        }
+       /* --- About Section --- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem;
+    align-items: start;
+}
 
-        .section-tag {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--cobalt);
-            margin-bottom: 1rem;
-            display: block;
-        }
+.bio-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
 
-        .section-title {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-        }
+/* Profile Image Design */
+.profile-frame {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    border-radius: 24px;
+    padding: 5px;
+    background: linear-gradient(135deg, var(--cobalt), var(--emerald));
+    margin-bottom: 1rem;
+}
 
-        .bio-text {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    background: var(--bg-dark);
+    display: block;
+}
 
-        .skills-container {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
+.frame-glow {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    box-shadow: 0 0 30px rgba(46, 91, 255, 0.3);
+    border-radius: 24px;
+    z-index: -1;
+}
 
-        .skill-group h4 {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
+.section-tag {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--cobalt);
+    margin-bottom: 1rem;
+    display: block;
+}
 
-        .skill-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
+.section-title {
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
 
-        .skill-badge {
-            padding: 0.5rem 1rem;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border-radius: 8px;
-            border: 1px solid var(--glass-border);
-            background: var(--glass-bg);
-            transition: all 0.3s ease;
-        }
+.bio-text {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
 
-        .skill-badge:hover {
-            border-color: var(--cobalt);
-            transform: scale(1.05);
-            background: rgba(46, 91, 255, 0.08);
-        }
+.skills-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 2rem;
+    border-radius: 24px;
+    border: 1px solid var(--glass-border);
+}
 
-        .skill-badge.emerald-accent:hover {
-            border-color: var(--emerald);
-            background: rgba(0, 255, 148, 0.08);
-        }
+.skill-group h4 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--emerald);
+    margin-bottom: 0.8rem;
+}
+
+.skill-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.skill-badge {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 6px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    transition: all 0.3s ease;
+}
+
+.skill-badge:hover {
+    border-color: var(--cobalt);
+    transform: translateY(-3px);
+    background: rgba(46, 91, 255, 0.1);
+}
+
+.skill-badge.emerald-accent:hover {
+    border-color: var(--emerald);
+    background: rgba(0, 255, 148, 0.1);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    .profile-frame {
+        width: 140px;
+        height: 140px;
+    }
+}
 
         /* --- Projects Section --- */
         .projects-grid {
@@ -511,6 +564,51 @@
         .project-link:hover {
             color: var(--emerald);
         }
+        .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+}
+
+.modal-content {
+    position: relative;
+    margin: 5% auto;
+    padding: 3rem;
+    width: 80%;
+    max-width: 900px;
+    max-height: 80vh;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: modalIn 0.5s ease;
+}
+
+@keyframes modalIn {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close-modal {
+    position: absolute;
+    right: 2rem;
+    top: 1.5rem;
+    color: var(--text-secondary);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal:hover { color: var(--emerald); }
+
+#case-study-body h2 { margin-bottom: 1.5rem; color: var(--text-primary); }
+#case-study-body h4 { color: var(--emerald); margin-top: 1.5rem; margin-bottom: 0.5rem; }
+#case-study-body p, #case-study-body li { color: var(--text-secondary); line-height: 1.6; }
+#case-study-body ul { padding-left: 1.2rem; }
 
         /* --- Education Bridge --- */
         .edu-bridge {
@@ -825,7 +923,7 @@
                     <span class="stat-label">Years Experience</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">5+</span>
+                    <span class="stat-number">2</span>
                     <span class="stat-label">Projects Delivered</span>
                 </div>
                 <div class="stat-item">
@@ -837,110 +935,154 @@
     </section>
 
     <!-- About Section -->
-    <section id="about">
-        <div class="container about-grid">
-            <div class="about-left">
-                <span class="section-tag">About Me</span>
-                <h2 class="section-title">The Intersection of Code and Commerce</h2>
-                <p class="bio-text">
-                    I am Phone Htet Myat — a hybrid professional at the intersection of data science and business. With a degree in Computer System Engineering and a foundation in Business Administration, I build ML solutions that are not just technically sound, but commercially impactful.
-                </p>
-                <p class="bio-text">
-                    I specialize in anomaly detection, fraud prevention, and data pipeline engineering, ensuring models provide real-world value to stakeholders and end-users.
-                </p>
-            </div>
-            <div class="about-right skills-container">
-                <div class="skill-group">
-                    <h4>Languages</h4>
-                    <div class="skill-badges">
-                        <span class="skill-badge">Python</span>
-                        <span class="skill-badge">SQL</span>
-                        <span class="skill-badge">R</span>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <h4>ML/AI Frameworks</h4>
-                    <div class="skill-badges">
-                        <span class="skill-badge emerald-accent">Scikit-learn</span>
-                        <span class="skill-badge emerald-accent">XGBoost</span>
-                        <span class="skill-badge emerald-accent">TensorFlow</span>
-                        <span class="skill-badge emerald-accent">Isolation Forest</span>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <h4>Data Engineering</h4>
-                    <div class="skill-badges">
-                        <span class="skill-badge">Pandas</span>
-                        <span class="skill-badge">NumPy</span>
-                        <span class="skill-badge">Apache Spark</span>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <h4>Business Strategy</h4>
-                    <div class="skill-badges">
-                        <span class="skill-badge emerald-accent">Product Strategy</span>
-                        <span class="skill-badge emerald-accent">Market Analysis</span>
-                        <span class="skill-badge emerald-accent">Roadmapping</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="container">
-            <div style="margin-bottom: 4rem;">
-                <span class="section-tag">Featured Projects</span>
-                <h2 class="section-title">Systems built at the intersection of precision and impact.</h2>
-            </div>
+<section id="about">
+    <div class="container about-grid">
+        <!-- Left: Bio & Image -->
+        <div class="about-left">
+            <span class="section-tag">About Me</span>
+            <h2 class="section-title">The Intersection of Code and Commerce</h2>
             
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="glass-card project-card emerald">
-                    <span class="project-tag text-emerald">Anomaly Detection</span>
-                    <h3>Smart Expense Anomaly Detector</h3>
-                    <p>An unsupervised machine learning system that identifies unusual spending patterns in corporate expense reports using Isolation Forest and Z-Score analysis. Reduces manual auditing time by 70%.</p>
-                    <div class="tech-stack">
-                        <span class="tech-pill">Python</span>
-                        <span class="tech-pill">Isolation Forest</span>
-                        <span class="tech-pill">Pandas</span>
-                        <span class="tech-pill">Plotly</span>
-                        <span class="tech-pill">SQL</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">
-                            <svg class="icon-svg" style="width:16px;height:16px;" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg>
-                            GitHub
-                        </a>
-                        <a href="#" class="project-link">Case Study</a>
-                    </div>
+            <div class="bio-flex">
+                <div class="profile-frame">
+                    <!-- Replace with your actual image path -->
+                    <img src="your-image.jpg" alt="Phone Htet Myat" class="profile-img">
+                    <div class="frame-glow"></div>
                 </div>
-
-                <!-- Project 2 -->
-                <div class="glass-card project-card cobalt">
-                    <span class="project-tag text-cobalt">Classification | FinTech</span>
-                    <h3>Credit Card Fraud Detection</h3>
-                    <p>A supervised ML pipeline using XGBoost and SMOTE oversampling to detect fraudulent transactions with a 95%+ AUC-ROC score on highly imbalanced financial datasets.</p>
-                    <div class="tech-stack">
-                        <span class="tech-pill">Python</span>
-                        <span class="tech-pill">XGBoost</span>
-                        <span class="tech-pill">SMOTE</span>
-                        <span class="tech-pill">Scikit-learn</span>
-                        <span class="tech-pill">SQL</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">
-                            <svg class="icon-svg" style="width:16px;height:16px;" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg>
-                            GitHub
-                        </a>
-                        <a href="#" class="project-link">Case Study</a>
-                    </div>
+                <div class="bio-content">
+                    <p class="bio-text">
+                        I am Phone Htet Myat — a hybrid professional at the intersection of data science and business. With a degree in Computer System Engineering and a foundation in Business Administration, I build ML solutions that are not just technically sound, but commercially impactful.
+                    </p>
+                    <p class="bio-text">
+                        I specialize in anomaly detection, fraud prevention, and data pipeline engineering, ensuring models provide real-world value to stakeholders.
+                    </p>
                 </div>
             </div>
         </div>
-    </section>
 
+        <!-- Right: Professional Skillset -->
+        <div class="about-right skills-container">
+            <!-- Core Tech -->
+            <div class="skill-group">
+                <h4>Core Tech & Engineering</h4>
+                <div class="skill-badges">
+                    <span class="skill-badge">Python</span>
+                    <span class="skill-badge">SQL</span>
+                    <span class="skill-badge">Docker</span>
+                    <span class="skill-badge">FastAPI</span>
+                    <span class="skill-badge">Git</span>
+                    <span class="skill-badge">Linux/Bash</span>
+                </div>
+            </div>
+
+            <!-- AI/ML -->
+            <div class="skill-group">
+                <h4>Data Science & AI</h4>
+                <div class="skill-badges">
+                    <span class="skill-badge emerald-accent">Scikit-learn</span>
+                    <span class="skill-badge emerald-accent">XGBoost</span>
+                    <span class="skill-badge emerald-accent">PyTorch</span>
+                    <span class="skill-badge emerald-accent">LangChain</span>
+                    <span class="skill-badge emerald-accent">RAG</span>
+                    <span class="skill-badge emerald-accent">MLflow</span>
+                </div>
+            </div>
+
+            <!-- Engineering -->
+            <div class="skill-group">
+                <h4>Data Engineering & DB</h4>
+                <div class="skill-badges">
+                    <span class="skill-badge">Pandas/Polars</span>
+                    <span class="skill-badge">Apache Spark</span>
+                    <span class="skill-badge">PostgreSQL</span>
+                    <span class="skill-badge">ChromaDB</span>
+                    <span class="skill-badge">ETL Pipelines</span>
+                </div>
+            </div>
+
+            <!-- Strategy -->
+            <div class="skill-group">
+                <h4>Strategy & Visualization</h4>
+                <div class="skill-badges">
+                    <span class="skill-badge emerald-accent">Power BI</span>
+                    <span class="skill-badge emerald-accent">Streamlit</span>
+                    <span class="skill-badge emerald-accent">KPI Tracking</span>
+                    <span class="skill-badge emerald-accent">Roadmapping</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+   <!-- Projects Section -->
+<section id="projects">
+    <div class="container">
+        <div style="margin-bottom: 4rem;">
+            <span class="section-tag">Featured Projects</span>
+            <h2 class="section-title">Systems built at the intersection of precision and impact.</h2>
+        </div>
+        
+        <div class="projects-grid">
+            <!-- Project 1: Smart Expense Anomaly Detector -->
+            <div class="glass-card project-card emerald">
+                <span class="project-tag text-emerald">Unsupervised Learning | Streamlit</span>
+                <h3>Smart Expense Anomaly Detector</h3>
+                <p>An intelligent financial monitoring tool using Isolation Forest and One-Class SVM to identify unusual spending patterns. Features a real-time Streamlit dashboard with ground-truth generation logic for unlabeled data.</p>
+                <div class="tech-stack">
+                    <span class="tech-pill">Python</span>
+                    <span class="tech-pill">Scikit-Learn</span>
+                    <span class="tech-pill">Streamlit</span>
+                    <span class="tech-pill">Plotly</span>
+                    <span class="tech-pill">Isolation Forest</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">
+                        <svg class="icon-svg" style="width:16px;height:16px;" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                        GitHub
+                    </a>
+                    <a href="https://your-hosted-site-1.com" target="_blank" class="project-link">
+                        <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>
+                        Live Demo
+                    </a>
+                    <a href="javascript:void(0)" class="project-link" onclick="openCaseStudy('anomaly')">Case Study</a>
+                </div>
+            </div>
+
+            <!-- Project 2: Credit Card Fraud Detection -->
+            <div class="glass-card project-card cobalt">
+                <span class="project-tag text-cobalt">Supervised Learning | Flask</span>
+                <h3>FraudGuard: Real-Time Detection</h3>
+                <p>A high-performance pipeline utilizing XGBoost and SMOTE oversampling to combat financial fraud. Includes a RESTful Flask API and a "Smart Boost" heuristic layer that reduced false positives by 25%.</p>
+                <div class="tech-stack">
+                    <span class="tech-pill">Python</span>
+                    <span class="tech-pill">XGBoost</span>
+                    <span class="tech-pill">Flask</span>
+                    <span class="tech-pill">SMOTE</span>
+                    <span class="tech-pill">Random Forest</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">
+                        <svg class="icon-svg" style="width:16px;height:16px;" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.298 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                        GitHub
+                    </a>
+                    <a href="https://your-hosted-site-2.com" target="_blank" class="project-link">
+                        <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor;"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>
+                        Live Demo
+                    </a>
+                    <a href="javascript:void(0)" class="project-link" onclick="openCaseStudy('fraud')">Case Study</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Case Study Modal -->
+<div id="case-study-modal" class="modal">
+    <div class="modal-content glass-card">
+        <span class="close-modal" onclick="closeCaseStudy()">&times;</span>
+        <div id="case-study-body">
+            <!-- Content injected via JS -->
+        </div>
+    </div>
+</div>
     <!-- Education Section -->
     <section id="education">
         <div class="container" style="text-align: center; margin-bottom: 3rem;">
@@ -1270,6 +1412,53 @@ magneticBtns.forEach(btn => {
                 }
             });
         });
+        // --- Case Study Data & Logic ---
+const caseStudyData = {
+    anomaly: {
+        title: "Smart Expense Anomaly Detector",
+        content: `
+            <h4>Project Overview</h4><p>An intelligent financial monitoring tool designed to identify anomalous spending patterns using Isolation Forest and One-Class SVM.</p>
+            <h4>Key Applications</h4><ul>
+                <li><strong>Data Engineering:</strong> StandardScaler and LabelEncoder preprocessing pipelines.</li>
+                <li><strong>Visualization:</strong> Interactive Streamlit dashboard with Plotly timeline mapping.</li>
+                <li><strong>Prediction Logic:</strong> Manual interface for real-time transaction status checks.</li>
+            </ul>
+            <h4>Challenge & Solution</h4><p><strong>Challenge:</strong> Unlabeled financial data.<br><strong>Solution:</strong> Engineered ground-truth generation via statistical thresholds (Mean + 2 Std Dev).</p>
+            <h4>Results</h4><p>Optimized for real-time prediction with high precision, making complex ML accessible via intuitive UI.</p>`
+    },
+    fraud: {
+        title: "FraudGuard: Real-Time Detection",
+        content: `
+            <h4>Project Overview</h4><p>High-performance anomaly detection for batch CSV and real-time transaction processing using XGBoost and SMOTE.</p>
+            <h4>Key Applications</h4><ul>
+                <li><strong>ML Pipeline:</strong> Hyperparameter tuning on Random Forest and SMOTE for class imbalance.</li>
+                <li><strong>Backend:</strong> Flask REST API handling asynchronous JSON endpoints.</li>
+                <li><strong>Logic Layer:</strong> "Smart Boost" heuristic system combining model probability with rule-based features.</li>
+            </ul>
+            <h4>Challenge & Solution</h4><p><strong>Challenge:</strong> Misclassification of high-value legitimate transactions.<br><strong>Solution:</strong> Developed a post-processing logic layer that reduced false-positives by 25%.</p>
+            <h4>Results</h4><p>Outperformed baseline models with sub-second inference times and high interpretability.</p>`
+    }
+};
+
+const modal = document.getElementById('case-study-modal');
+const modalBody = document.getElementById('case-study-body');
+
+function openCaseStudy(id) {
+    const data = caseStudyData[id];
+    modalBody.innerHTML = `<h2>${data.title}</h2>${data.content}`;
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden"; // Prevent background scroll
+}
+
+function closeCaseStudy() {
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+}
+
+// Close if clicked outside
+window.onclick = function(event) {
+    if (event.target == modal) closeCaseStudy();
+}
     </script>
 </body>
 </html>
