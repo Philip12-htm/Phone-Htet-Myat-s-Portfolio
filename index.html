@@ -968,18 +968,69 @@
             .hero-stats { gap: 2rem; }
         }
 
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hamburger { display: flex; }
-            .hero-title { font-size: 3rem; }
-            .hero-stats { flex-direction: column; gap: 1.5rem; align-items: center; }
-            .cta-group { flex-direction: column; width: 100%; max-width: 300px; margin-left: auto; margin-right: auto; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .blog-grid { grid-template-columns: 1fr; }
-            .section-title { font-size: 2.2rem; }
-            .edu-panel { padding: 2rem; }
-        }
+       @media (max-width: 768px) {
+    /* 1. Fix the Nav Bar height on mobile */
+    nav {
+        padding: 1rem 0;
+        background: rgba(11, 11, 11, 0.95);
+        backdrop-filter: blur(10px);
+    }
 
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    /* 2. Fix Hero "Crushing" and Overlap */
+    #hero {
+        height: auto;           /* Change from 100vh to auto */
+        min-height: 100vh;      /* Keeps it full screen but allows it to grow */
+        padding: 8rem 0 4rem;   /* Top padding prevents Nav overlap */
+        display: block;         /* Better for flow than flex-center on mobile */
+    }
+
+    .hero-content {
+        padding-top: 2rem;
+    }
+
+    .hero-title { 
+        font-size: 2.8rem; 
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+    }
+
+    .typewriter-container {
+        font-size: 1.2rem;
+        height: auto;
+        margin-bottom: 2rem;
+    }
+
+    .hero-desc {
+        font-size: 1rem;
+        margin-bottom: 2.5rem;
+        padding: 0 10px;
+    }
+
+    /* 3. Stack Stats and Buttons */
+    .hero-stats { 
+        flex-direction: column; 
+        gap: 2rem; 
+        align-items: center; 
+        margin-top: 3rem;
+    }
+    
+    .cta-group { 
+        flex-direction: column; 
+        width: 100%; 
+        max-width: 280px; 
+        margin: 0 auto 3rem; 
+        gap: 1rem;
+    }
+
+    .btn { width: 100%; justify-content: center; }
+
+    .projects-grid, .blog-grid { grid-template-columns: 1fr; }
+    .section-title { font-size: 2.2rem; }
+    .edu-panel { padding: 2rem; }
+}
         /* Icons */
         .icon-svg {
             fill: currentColor;
@@ -1018,7 +1069,7 @@
 
             </ul>
 
-            <div class="hamburger" id="hamburger">
+          <div class="hamburger" id="hamburger-menu">
 
                 <span></span>
 
@@ -1034,7 +1085,7 @@
 
 
 
-    <div class="mobile-nav" id="mobile-nav">
+    <div class="mobile-nav" id="mobile-menu-overlay">
 
         <a href="#hero" class="mobile-link">Home</a>
 
@@ -1598,21 +1649,25 @@
         });
 
         // --- Hamburger Menu ---
-        const hamburger = document.getElementById('hamburger');
-        const mobileNav = document.getElementById('mobile-nav');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const hamburger = document.getElementById('hamburger-menu');
+    const mobileNav = document.getElementById('mobile-menu-overlay');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        hamburger.addEventListener('click', () => {
-            mobileNav.classList.toggle('open');
-            hamburger.classList.toggle('active');
-        });
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('open');
+        // Prevent background scrolling when menu is open
+        document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : 'auto';
+    });
 
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.remove('open');
-                hamburger.classList.remove('active');
-            });
+    // Close menu when a link is clicked
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('open');
+            document.body.style.overflow = 'auto';
         });
+    });
 
         // --- New Smoother Fluid Buttons ---
 const magneticBtns = document.querySelectorAll('.magnetic-btn');
