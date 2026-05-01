@@ -178,13 +178,15 @@
         }
 
       /* --- Hamburger Animation --- */
+      
         .hamburger {
             display: none;
             cursor: pointer;
             flex-direction: column;
             gap: 6px;
-            z-index: 2000; /* Ensure it stays above the overlay */
+            z-index: 2001; /* Higher than the mobile-nav (1500) */
             padding: 10px;
+            transition: transform 0.3s ease;
         }
 
         .hamburger span {
@@ -193,22 +195,29 @@
             background-color: var(--text-primary);
             transition: all 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
             transform-origin: center;
+            display: block;
         }
 
-        /* This turns the hamburger into an X */
+        /* --- THE "X" ANIMATION --- */
+        /* When the 'active' class is added via JS */
+        
+        /* Top line: moves down and rotates 45 deg */
         .hamburger.active span:nth-child(1) {
             transform: translateY(8px) rotate(45deg);
-            background-color: var(--emerald);
+            background-color: var(--emerald); /* Optional: change color to emerald when open */
         }
+
+        /* Middle line: disappears and slides left */
         .hamburger.active span:nth-child(2) {
             opacity: 0;
             transform: translateX(-20px);
         }
+
+        /* Bottom line: moves up and rotates -45 deg */
         .hamburger.active span:nth-child(3) {
             transform: translateY(-8px) rotate(-45deg);
             background-color: var(--emerald);
         }
-
         /* --- Modern Mobile Overlay --- */
         .mobile-nav {
             position: fixed;
@@ -1693,18 +1702,22 @@
 
         // --- Hamburger Menu ---
    
-    const hamburger = document.getElementById('hamburger-menu');
+   const hamburger = document.getElementById('hamburger-menu');
     const mobileNav = document.getElementById('mobile-menu-overlay');
     const mobileLinks = document.querySelectorAll('.mobile-link');
 
     hamburger.addEventListener('click', () => {
+        // Toggle the 'open' class for the menu overlay
         const isOpen = mobileNav.classList.toggle('open');
+        
+        // Toggle the 'active' class for the hamburger to turn it into an X
         hamburger.classList.toggle('active');
         
-        // Prevent body scroll when menu is open
+        // Professional touch: Prevent the background from scrolling when menu is open
         document.body.style.overflow = isOpen ? 'hidden' : 'initial';
     });
 
+    // Close menu and turn X back to hamburger when a link is clicked
     mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
             mobileNav.classList.remove('open');
