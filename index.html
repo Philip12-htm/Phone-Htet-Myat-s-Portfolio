@@ -219,6 +219,75 @@
             color: var(--text-primary);
             text-decoration: none;
         }
+        @media (max-width: 992px) {
+    .nav-links { display: none; } /* Hide desktop links */
+    .hamburger { display: flex; } /* Show hamburger */
+    
+    .hero-title { font-size: 3.5rem; }
+}
+
+/* --- Mobile Specific Fixes --- */
+@media (max-width: 768px) {
+    #hero {
+        height: auto; /* Allow section to grow so it doesn't overlap nav */
+        padding: 8rem 0 4rem; /* Add space for fixed nav at top */
+        min-height: 100vh;
+    }
+
+    .hero-title {
+        font-size: 2.8rem;
+        line-height: 1.2;
+    }
+
+    .typewriter-container {
+        font-size: 1.2rem;
+        height: auto;
+    }
+
+    .cta-group {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto 3rem;
+    }
+
+    .btn { width: 100%; justify-content: center; }
+
+    .hero-stats {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .stat-number { font-size: 2rem; }
+}
+
+/* --- Hamburger Animation --- */
+.hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* --- Professional Mobile Nav --- */
+.mobile-nav {
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s ease;
+    background: rgba(11, 11, 11, 0.98);
+}
+
+.mobile-nav.open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    right: 0;
+}
 
         /* --- Hero Section --- */
         #hero {
@@ -992,66 +1061,69 @@
     <div id="custom-cursor"></div>
     <div id="cursor-follower"></div>
 
-    <nav id="navbar">
-        <div class="container nav-content">
-            <a href="#" class="logo mono text-emerald">PHM</a>
-            <ul class="nav-links">
-                <li><a href="#hero" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#insights">Blog</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+  <!-- Navigation -->
+<nav id="navbar">
+    <div class="container nav-content">
+        <a href="#" class="logo mono text-emerald">PHM</a>
+        <ul class="nav-links">
+            <li><a href="#hero" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#insights">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-    </nav>
-
-    <div class="mobile-nav" id="mobile-nav">
-        <a href="#hero" class="mobile-link">Home</a>
-        <a href="#about" class="mobile-link">About</a>
-        <a href="#projects" class="mobile-link">Projects</a>
-        <a href="#education" class="mobile-link">Education</a>
-        <a href="#insights" class="mobile-link">Blog</a>
-        <a href="#contact" class="mobile-link">Contact</a>
     </div>
+</nav>
 
-    <!-- Hero Section -->
-    <section id="hero">
-        <div id="tsparticles"></div>
-        <div class="hero-content container">
-            <span class="eyebrow text-cobalt">Data Intelligence & Business Strategy</span>
-            <h1 class="hero-title">Phone Htet Myat</h1>
-            <div class="typewriter-container mono text-emerald">
-                &gt; <span id="typewriter"></span><span class="cursor"></span>
+<!-- Mobile Overlay -->
+<div class="mobile-nav" id="mobile-menu-overlay">
+    <a href="#hero" class="mobile-link">Home</a>
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#projects" class="mobile-link">Projects</a>
+    <a href="#education" class="mobile-link">Education</a>
+    <a href="#insights" class="mobile-link">Blog</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+</div>
+
+<!-- Hero Section -->
+<section id="hero">
+    <div id="tsparticles"></div>
+    <div class="hero-content container">
+        <span class="eyebrow text-cobalt">Data Intelligence & Business Strategy</span>
+        <h1 class="hero-title">Phone Htet Myat</h1>
+        <div class="typewriter-container mono text-emerald">
+            &gt; <span id="typewriter"></span><span class="cursor"></span>
+        </div>
+        <p class="hero-desc">
+            Transforming raw data into strategic business decisions. I engineer ML systems that detect fraud, predict behavior, and drive measurable outcomes.
+        </p>
+        <div class="cta-group">
+            <a href="#projects" class="btn btn-primary magnetic-btn">View My Work</a>
+            <!-- Updated Path -->
+            <a href="/assets/Phone Htet Myat Professional Resume.pdf" class="btn btn-ghost magnetic-btn" download>Download Resume</a>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">2+</span>
+                <span class="stat-label">Years Experience</span>
             </div>
-            <p class="hero-desc">
-                Transforming raw data into strategic business decisions. I engineer ML systems that detect fraud, predict behavior, and drive measurable outcomes — blending deep technical expertise with business intuition.
-            </p>
-            <div class="cta-group">
-                <a href="#projects" class="btn btn-primary magnetic-btn">View My Work</a>
-                <a href="/assets/Phone Htet Myat Professional Resume.pdf" class="btn btn-ghost magnetic-btn">Download Resume</a>
+            <div class="stat-item">
+                <span class="stat-number">10+</span>
+                <span class="stat-label">Projects Delivered</span>
             </div>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-number">2+</span>
-                    <span class="stat-label">Years Experience</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">2</span>
-                    <span class="stat-label">Projects Delivered</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">95%</span>
-                    <span class="stat-label">Model Accuracy</span>
-                </div>
+            <div class="stat-item">
+                <span class="stat-number">95%</span>
+                <span class="stat-label">Model Accuracy</span>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- About Section -->
 <section id="about">
@@ -1664,6 +1736,26 @@ function closeCaseStudy() {
 window.onclick = function(event) {
     if (event.target == modal) closeCaseStudy();
 }
+        const hamburger = document.getElementById('hamburger-menu');
+const mobileNav = document.getElementById('mobile-menu-overlay');
+const mobileLinks = document.querySelectorAll('.mobile-link');
+
+// Toggle Menu
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileNav.classList.toggle('open');
+    // Prevent scrolling when menu is open
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : 'auto';
+});
+
+// Close Menu when a link is clicked
+mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = 'auto';
+    });
+});
     </script>
 </body>
 </html>
